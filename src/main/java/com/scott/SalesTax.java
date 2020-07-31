@@ -23,19 +23,23 @@ public class SalesTax {
         boolean done = false;
         while (!done) {
             System.out.print("Please enter your item name:\n");
-            item = scanner.next();
+            item = scanner.nextLine();
             if (item.toLowerCase().equalsIgnoreCase(DONE)) {
                 done = true;
             } else {
                 System.out.print("Please enter the quantity of " + item + " that you are purchasing:\n");
-                qty = scanner.next();
+                qty = scanner.nextLine();
                 System.out.print("Please enter the price of " + item + " that you are purchasing:\n");
-                price = scanner.next();
+                price = scanner.nextLine();
 
-                //TODO: check types and cleanup
-                Integer parsedQty = Integer.parseInt(qty);
-                BigDecimal parsedPrice = new BigDecimal(price);
-                controller.getInputItems().add(new InputItem(item, parsedQty, parsedPrice));
+                try {
+                    Integer parsedQty = Integer.parseInt(qty);
+                    BigDecimal parsedPrice = new BigDecimal(price);
+                    controller.addInputItem(new InputItem(item, parsedQty, parsedPrice));
+                } catch (NumberFormatException nfe) {
+                    System.out.println("The Quanity must be a whole number greater than 0 and price must follow the format 12.99.");
+                    System.out.println("Please try adding the item again");
+                }
             }
         }
         controller.calculateAndPrintReceipt();

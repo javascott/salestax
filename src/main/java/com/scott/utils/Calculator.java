@@ -41,6 +41,13 @@ public class Calculator {
             }
         }
 
-        return salesTax;
+        return getRounded(salesTax);
     }
+
+    private BigDecimal getRounded(BigDecimal input) {
+        BigDecimal base20 = new BigDecimal(20).setScale(0);
+        BigDecimal newDecimal = input.multiply(base20).setScale(0, RoundingMode.CEILING);
+        return newDecimal.divide(base20);
+    }
+
 }

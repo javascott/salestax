@@ -24,7 +24,7 @@ public class SalesTaxControllerTests {
         assert (total != null && total.setScale(2, RoundingMode.HALF_UP).compareTo(new BigDecimal(29.83).setScale(2, RoundingMode.HALF_UP)) ==0);
     }
 
-    //@Test
+    @Test
     public void testCalculateTotal2() {
         InputItem chocolates = new InputItem("imported box of chocolates", 1, new BigDecimal(10.0));
         getController().addInputItem(chocolates);
@@ -34,7 +34,7 @@ public class SalesTaxControllerTests {
         assert (total != null && total.setScale(2, RoundingMode.HALF_UP).compareTo(new BigDecimal(65.15).setScale(2, RoundingMode.HALF_UP)) ==0);
     }
 
-    //@Test
+    @Test
     public void testCalculateTotal3() {
         InputItem importedBottle = new InputItem("imported bottle of perfume", 1, new BigDecimal(27.99));
         getController().addInputItem(importedBottle);
